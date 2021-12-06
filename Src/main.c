@@ -92,7 +92,7 @@ int main(void)
   MX_TIM1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,13 +104,13 @@ int main(void)
     /* USER CODE BEGIN 3 */
     for (i=0; i<=65535; i+=50)
     {
-      TIM1->CCR3 = i;
+      TIM1->CCR1 = i;
       HAL_Delay(1);      
     }
     
     for (i=65535; i>=0; i-=50)
     {
-      TIM1->CCR3 = i;
+      TIM1->CCR1 = i;
       HAL_Delay(1);
     }
 
@@ -208,7 +208,7 @@ static void MX_TIM1_Init(void)
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
   {
     Error_Handler();
   }
